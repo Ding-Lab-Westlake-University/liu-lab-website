@@ -9,7 +9,7 @@ export default function ThemeToggle() {
     <button
       onClick={toggle}
       aria-label="Toggle dark mode"
-      className="w-8 h-8 flex items-center justify-center text-[var(--fg-2)] hover:text-[var(--fg)] transition-colors duration-200 cursor-pointer"
+      className={`w-8 h-8 flex items-center justify-center transition-all duration-200 cursor-pointer ${theme === 'dark' ? 'text-[#ffd166] hover:scale-105' : 'text-[var(--fg-2)] hover:text-[var(--fg)]'}`}
     >
       {theme === "dark" ? (
         /* Sun */
