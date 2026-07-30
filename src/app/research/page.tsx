@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
+import HeroCarousel from "@/components/HeroCarousel";
 import { researchAreas } from "@/data/research";
 
 export default function ResearchPage() {
@@ -14,16 +15,44 @@ export default function ResearchPage() {
   return (
     <div className="pt-28 pb-32">
       {/* Page header */}
-      <section className="max-w-[1400px] mx-auto px-8 mb-20">
+      <section className="relative max-w-[1400px] mx-auto px-8 mb-20">
+        {/* Desktop: background carousel on the right half */}
+        <div className="hidden lg:block absolute inset-y-0 right-0 w-1/2">
+          <HeroCarousel
+            slides={[
+              { src: "/images/research-1.jpg", alt: "Research image 1" },
+              { src: "/images/research-2.jpg", alt: "Research image 2" },
+              { src: "/images/research-3.jpg", alt: "Research image 3" },
+            ]}
+            containerClassName="h-full w-full max-w-none mt-0"
+            imageWrapperClassName="h-full rounded-none overflow-hidden"
+          />
+        </div>
+
         <FadeInWhenVisible>
-          <h1 className="text-[clamp(2.5rem,6vw,5rem)] font-extrabold tracking-[-0.03em] text-[var(--heading)] leading-tight">
-            Research
-          </h1>
-          <p className="mt-4 text-[16px] font-light text-[var(--fg-2)] max-w-lg leading-relaxed">
-            We tackle fundamental open problems and build systems with
-            real-world impact. Our work spans the following research directions.
-          </p>
+          <div className="relative z-10 lg:max-w-[680px]">
+            <h1 className="text-[clamp(2.5rem,6vw,5rem)] font-extrabold tracking-[-0.03em] text-[var(--heading)] leading-tight">
+              Research
+            </h1>
+            <p className="mt-4 text-[16px] font-light text-[var(--fg-2)] max-w-lg leading-relaxed">
+              We tackle fundamental open problems and build systems with
+              real-world impact. Our work spans the following research directions.
+            </p>
+          </div>
         </FadeInWhenVisible>
+
+        {/* Mobile: inline carousel under the header */}
+        <div className="lg:hidden mt-6">
+          <HeroCarousel
+            slides={[
+              { src: "/images/research-1.jpg", alt: "Research image 1" },
+              { src: "/images/research-2.jpg", alt: "Research image 2" },
+              { src: "/images/research-3.jpg", alt: "Research image 3" },
+            ]}
+            containerClassName="max-w-none mt-6"
+            imageWrapperClassName="relative aspect-[16/9] rounded-2xl overflow-hidden"
+          />
+        </div>
       </section>
 
       {/* Accordion sections */}

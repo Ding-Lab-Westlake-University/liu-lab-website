@@ -77,8 +77,13 @@ img, picture, video { border-radius: 12px; display: block; }
 .site-transition { transition: all var(--dur-fast) ease; }
 
 /* Section spacing */
+/* Section spacing */
 section { padding: var(--section-vertical) 0; }
 @media (max-width: 768px) { section { padding: var(--section-vertical-mobile) 0; } }
+
+/* Compact sections (page-specific) */
+.section-compact { padding: 48px 0; }
+@media (max-width: 768px) { .section-compact { padding: 32px 0; } }
 
 /* Headings */
 h1,h2,h3,h4 { margin: 0 0 0.6rem 0; }
@@ -118,14 +123,38 @@ h1 { font-family: var(--font-heading); }
 .navbar-inner { height: 84px; display:flex; align-items:center; justify-content:space-between; padding: 0 2.5rem; }
 .navbar-transparent { background: transparent; }
 .navbar-surface { background: rgba(255,255,255,0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); }
-.nav-logo { font-family: var(--font-heading); font-weight: 700; font-size: 22px; color: var(--color-text); letter-spacing: -0.01em; }
+.nav-logo { display: block; }
 .nav-links { display:flex; gap: 24px; align-items:center; }
 .nav-link-underline { position: relative; padding-bottom: 4px; }
 .nav-link-underline::after { content: ''; position:absolute; left:0; bottom:0; height:2px; width:0; background: var(--color-accent); transition: width var(--dur-fast) ease; }
 .nav-link-underline:hover::after, .nav-link-underline.active::after { width:100%; }
 
 /* Hero */
-.hero { min-height: 100vh; display:flex; align-items:center; justify-content:center; text-align:center; background: var(--color-dark); color: #fff; position: relative; overflow: hidden; }
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--color-dark);
+  background-image: url('/liu-lab-website/images/home-background.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle overlay if contrast needs help (keeps text readable) */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 12, 35, 0.45);
+  z-index: 1;
+  pointer-events: none;
+}
 .hero-inner { z-index: 10; max-width: 1100px; padding: 0 1rem; }
 .hero-title { font-family: var(--font-heading); font-weight: 700; font-size: var(--size-lg-heading); line-height: 1.02; letter-spacing: -0.02em; margin: 0; }
 .hero-sub { margin-top: 18px; font-variant: small-caps; color: rgba(255,255,255,0.82); letter-spacing: 0.08em; }
@@ -145,9 +174,9 @@ h1 { font-family: var(--font-heading); }
 .research-card:hover { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(16,24,40,0.06); }
 .research-icon { width:64px; height:64px; border-radius:10px; background: linear-gradient(135deg,var(--color-accent) 0%, rgba(59,130,246,0.6) 100%); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; }
 
-/* Team card hover: square -> circle, image zoom and overlay */
 .team-card { text-align:center; }
-.team-photo-wrap { width:100%; aspect-ratio:1 / 1; overflow:hidden; border-radius:12px; transition: border-radius 0.35s ease; }
+.team-photo-wrap { aspect-ratio:1 / 1; overflow:hidden; border-radius:12px; transition: border-radius 0.35s ease; }
+.team-photo--circle { border-radius:50%; }
 .team-card.group:hover .team-photo-wrap { border-radius:50%; }
 .team-photo { width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease; }
 .team-card.group:hover .team-photo { transform: scale(1.06); }
@@ -189,9 +218,15 @@ h1 { font-family: var(--font-heading); }
   --border: var(--color-border);
 }
 
-/* Dark hero visual tweak for a cooler look */
+/* hero background*/
 .dark .hero {
-  background: radial-gradient(600px 400px at 20% 20%, rgba(96,165,250,0.08), transparent 6%), linear-gradient(180deg,#021426 0%, #071029 60%);
+  background-image: url('/liu-lab-website/images/home-background.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   color: var(--color-text);
 }
 .dark .neural-dot { background: rgba(255,255,255,0.9); opacity: 0.12; }
+
+/* Ensure the mini contact button text remains readable in dark mode */
+.dark .contact-mini-btn { color: #000; }

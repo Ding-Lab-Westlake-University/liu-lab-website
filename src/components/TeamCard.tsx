@@ -19,15 +19,15 @@ function getInitials(name: string): string {
 export default function TeamCard({ member, large = false }: TeamCardProps) {
   return (
     <div className={`group team-card relative flex flex-col items-center text-center ${large ? 'lg:col-span-2' : ''}`}>
-      <div className={`${large ? 'w-52' : 'w-full'} relative`}>
-        <div className={`team-photo-wrap ${large ? 'w-52 h-52' : 'w-full'}`}>
+      <div className="relative">
+        <div className={`team-photo-wrap ${large ? 'w-52 h-52' : 'w-36 h-36 mx-auto team-photo--circle'}`}>
           {member.photo ? (
             <Image
               src={member.photo}
               alt={member.name}
               fill
               className="team-photo"
-              sizes={large ? '208px' : '160px'}
+              sizes={large ? '208px' : '144px'}
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-[var(--color-surface)]">

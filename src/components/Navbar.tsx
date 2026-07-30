@@ -37,7 +37,11 @@ export default function Navbar() {
       <nav className="navbar-inner">
         {/* Logo / Lab name */}
         <Link href="/" className="nav-logo">
-          {site.name}
+          <img
+            src="/liu-lab-website/images/logo.jpg"
+            alt="Liu Lab logo"
+            style={{ height: 52, width: "auto", display: "block", filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.4))" }}
+          />
         </Link>
 
         {/* Desktop nav links */}
@@ -61,9 +65,9 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <ThemeToggle />
 
-          <a href="/contact#join" className="btn btn-primary hidden md:inline-flex">
+          <Link href="/contact#join" className="btn btn-primary hidden md:inline-flex">
             Join Us
-          </a>
+          </Link>
 
           {/* Mobile hamburger */}
           <button
