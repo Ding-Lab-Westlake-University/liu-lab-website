@@ -33,38 +33,22 @@ export default function Navbar() {
   }, [pathname]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "nav-blur-bg border-b border-[var(--border)]"
-          : "bg-transparent"
-      }`}
-    >
-      <nav className="w-full px-12 h-14 flex items-center justify-between">
+    <header className={`navbar ${scrolled ? 'navbar-surface' : 'navbar-transparent'}`}>
+      <nav className="navbar-inner">
         {/* Logo / Lab name */}
-        <Link
-          href="/"
-          className="text-[var(--fg)] font-semibold text-[15px] tracking-tight hover:text-[var(--heading)] transition-colors"
-        >
+        <Link href="/" className="nav-logo">
           {site.name}
         </Link>
 
         {/* Desktop nav links */}
-        <ul className="hidden md:flex items-center gap-7">
+        <ul className="hidden md:flex nav-links">
           {navLinks.map(({ href, label }) => {
             const active = pathname === href || pathname.startsWith(href + "/");
             return (
               <li key={href}>
                 <Link
                   href={href}
-                  className={`relative text-[14px] pb-[3px] transition-colors duration-200
-                    after:absolute after:left-0 after:bottom-0 after:h-[1.5px] after:bg-[var(--fg)]
-                    after:transition-all after:duration-300 after:ease-in-out
-                    ${
-                      active
-                        ? "text-[var(--fg)] font-medium after:w-full"
-                        : "text-[var(--fg-2)] hover:text-[var(--fg)] after:w-0 hover:after:w-full"
-                    }`}
+                  className={`nav-link nav-link-underline ${active ? 'active' : ''}`}
                 >
                   {label}
                 </Link>
@@ -74,48 +58,45 @@ export default function Navbar() {
         </ul>
 
         {/* Right side: theme toggle + hamburger */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-4">
           <ThemeToggle />
+
+          <a href="/contact#join" className="btn btn-primary hidden md:inline-flex">
+            Join Us
+          </a>
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden flex flex-col gap-[5px] p-2 cursor-pointer"
+            className="md:hidden flex flex-col gap-[6px] p-2 cursor-pointer"
             onClick={() => setMenuOpen((v) => !v)}
             aria-label="Toggle menu"
           >
-            <span
-              className={`block w-5 h-[1.5px] bg-[var(--fg)] transition-all duration-200 ${
-                menuOpen ? "rotate-45 translate-y-[6.5px]" : ""
-              }`}
-            />
-            <span
-              className={`block w-5 h-[1.5px] bg-[var(--fg)] transition-all duration-200 ${
-                menuOpen ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`block w-5 h-[1.5px] bg-[var(--fg)] transition-all duration-200 ${
-                menuOpen ? "-rotate-45 -translate-y-[6.5px]" : ""
-              }`}
-            />
+            <span className={`block w-5 h-[2px] bg-[var(--color-text)] transition-all duration-200 ${menuOpen ? 'rotate-45 translate-y-[6.5px]' : ''}`} />
+            <span className={`block w-5 h-[2px] bg-[var(--color-text)] transition-all duration-200 ${menuOpen ? 'opacity-0' : ''}`} />
+            <span className={`block w-5 h-[2px] bg-[var(--color-text)] transition-all duration-200 ${menuOpen ? '-rotate-45 -translate-y-[6.5px]' : ''}`} />
           </button>
         </div>
       </nav>
 
       {/* Mobile dropdown */}
       {menuOpen && (
-        <div className="md:hidden bg-[var(--bg)] border-b border-[var(--border)] px-6 pb-5 pt-2">
+        <div className="md:hidden bg-[var(--color-bg)] border-b border-[var(--color-border)] px-6 pb-5 pt-2">
           <ul className="flex flex-col gap-3">
             {navLinks.map(({ href, label }) => (
               <li key={href}>
                 <Link
                   href={href}
-                  className="block text-[15px] text-[var(--fg)] py-1 hover:text-[var(--heading)] transition-colors"
+                  className="block text-[15px] text-[var(--color-text)] py-1 hover:text-[var(--color-dark)] transition-colors"
                 >
                   {label}
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="/contact#join" className="btn btn-primary w-full text-center">
+                Join Us
+              </Link>
+            </li>
           </ul>
         </div>
       )}

@@ -44,22 +44,30 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────────── */}
-      <section className="min-h-screen flex flex-col items-center justify-center text-center px-8 pt-28 pb-20 bg-[var(--bg)]">
-        <h1 className="text-[clamp(2.8rem,7vw,6rem)] font-extrabold leading-[1.04] tracking-[-0.03em] text-[var(--heading)] whitespace-nowrap">
-          {site.slogan}
-        </h1>
-        <p className="mt-6 text-[clamp(1rem,2.2vw,1.3rem)] font-light text-[var(--fg-2)] max-w-2xl mx-auto leading-relaxed">
-          {site.fullName}
-        </p>
-        <div className="relative w-full max-w-4xl aspect-square mt-12">
-          <Image
-            src="/images/home-mice.png"
-            alt="Social behavior paradigm illustration"
-            fill
-            className="object-contain rotate-90 p-2"
-            sizes="(max-width: 768px) 100vw, 896px"
-            priority
-          />
+      <section className="hero">
+        <div className="neural-canvas" aria-hidden>
+          {/* simple decorative dots positioned absolutely */}
+          <span className="neural-dot" style={{ left: '12%', top: '20%', animationDelay: '0s' }} />
+          <span className="neural-dot" style={{ left: '28%', top: '40%', animationDelay: '0.6s' }} />
+          <span className="neural-dot" style={{ left: '48%', top: '18%', animationDelay: '1.2s' }} />
+          <span className="neural-dot" style={{ left: '68%', top: '36%', animationDelay: '0.3s' }} />
+          <span className="neural-dot" style={{ left: '82%', top: '60%', animationDelay: '0.9s' }} />
+        </div>
+
+        <div className="hero-inner">
+          <h1 className="hero-title">
+            Unveiling the <span style={{ color: 'var(--color-accent)' }}>Social Brain.</span>
+          </h1>
+          <p className="hero-sub">{site.fullName}</p>
+
+          <div className="hero-ctas">
+            <a href="/research" className="btn btn-primary hero-accent">Explore Research</a>
+            <a href="/team" className="btn btn-outline hero-secondary">Meet the Team</a>
+          </div>
+
+          <div className="mt-8">
+            <a href="#about" className="muted">Scroll down ↓</a>
+          </div>
         </div>
       </section>
 
@@ -221,15 +229,9 @@ export default function HomePage() {
             <div className="mt-10 flex gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center h-11 px-7 rounded-full bg-[var(--fg)] text-[var(--bg)] text-[14px] font-medium tracking-tight hover:opacity-85 transition-opacity duration-200"
+                className="inline-flex items-center justify-center h-11 px-7 rounded-full bg-[var(--fg)] text-white text-[14px] font-medium tracking-tight hover:opacity-85 transition-opacity duration-200"
               >
                 Contact Us
-              </Link>
-              <Link
-                href="/contact#join"
-                className="inline-flex items-center justify-center h-11 px-7 rounded-full border border-[var(--fg)] text-[var(--fg)] text-[14px] font-medium tracking-tight hover:bg-[var(--fg)] hover:text-[var(--bg)] transition-colors duration-200"
-              >
-                Join the Lab
               </Link>
             </div>
           </FadeInWhenVisible>

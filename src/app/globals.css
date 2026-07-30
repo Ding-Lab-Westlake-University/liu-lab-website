@@ -1,50 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap');
 @import "tailwindcss";
 
-/* ── Apple-style design tokens ──────────────────────────────── */
-@theme inline {
-  /* Typography */
-  --font-sans:
-    var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-
-  /* Color palette — grayscale only */
-  --color-apple-white: #ffffff;
-  --color-apple-offwhite: #f5f5f7;
-  --color-apple-black: #000000;
-  --color-apple-near-black: #1d1d1f;
-  --color-apple-body: #86868b;
-  --color-apple-mid: #6e6e73;
-  --color-apple-light: #d2d2d7;
-  --color-apple-border: #e5e5ea;
-}
-
-/* ── Theme variables (light / dark) ─────────────────────────── */
+/* ── Design tokens: colors, typography, spacing ─────────────── */
 :root {
-  --bg: #ffffff;
-  --bg-off: #f5f5f7;
-  --fg: #1d1d1f;
-  --fg-2: #86868b;
-  --heading: #000000;
-  --border: #e5e5ea;
-  --ghost: #f0f0f0;
-  --nav-bg: rgba(255, 255, 255, 0.8);
-}
-.dark {
-  --bg: #000000;
-  --bg-off: #111113;
-  --fg: #f5f5f7;
-  --fg-2: #a1a1a6;
-  --heading: #ffffff;
-  --border: #2a2a2e;
-  --ghost: #1a1a1e;
-  --nav-bg: rgba(0, 0, 0, 0.85);
-}
+  /* Colors */
+  --color-bg: #fbfcfe;
+  --color-surface: #f4f6fb;
+  --color-dark: #071022;
+  --color-accent: #2563eb;
+  --color-accent-warm: #d97706;
+  --color-text: #0f1724;
+  --color-muted: #64748b;
+  --color-border: rgba(15,23,36,0.06);
 
-/* ── Global resets & base styles ────────────────────────────── */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+
+  /* Typographic scale tuned for a more editorial lab look */
+  --size-lg-heading: clamp(2.6rem, 6vw, 4.8rem);
+  --size-md-heading: clamp(1.6rem, 3.5vw, 2.6rem);
+  --size-body: 17px;
+
+  /* Layout */
+  --max-read-width: 680px;
+  --section-vertical: 100px;
+  --section-vertical-mobile: 60px;
+
+  /* Motion */
+  --dur-fast: 0.2s;
+
+  /* Legacy aliases for existing components (keeps compatibility) */
+  --bg-off: var(--color-surface);
+  --fg: var(--color-text);
+  --fg-2: var(--color-muted);
+  --heading: var(--color-text);
+  --border: var(--color-border);
+  --nav-bg: rgba(255,255,255,0.6);
 }
 
 html {
@@ -54,120 +46,152 @@ html {
   text-rendering: optimizeLegibility;
 }
 
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
 body {
-  background-color: var(--bg);
-  color: var(--fg);
+  background: var(--color-bg);
+  color: var(--color-text);
   font-family: var(--font-sans);
-  line-height: 1.6;
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
-}
-
-/* ── Text selection ──────────────────────────────────────────── */
-::selection {
-  background-color: var(--fg);
-  color: var(--bg);
-}
-
-/* ── Focus outline — thin black ring instead of browser default */
-:focus-visible {
-  outline: 2px solid var(--fg);
-  outline-offset: 2px;
-}
-
-/* ── Utility: grayscale image filter for team photos ─────────── */
-.img-grayscale {
-  filter: grayscale(100%);
-  transition: filter 0.3s ease;
-}
-.img-grayscale:hover {
-  filter: grayscale(0%);
-}
-
-.nav-blur-bg {
-  background: var(--nav-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-/* ── MDX / prose content styles ──────────────────────────────── */
-.prose {
-  color: var(--fg);
-  max-width: 68ch;
-  font-size: 1.0625rem;
+  font-size: var(--size-body);
   line-height: 1.75;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--dur-fast) ease, color var(--dur-fast) ease;
 }
-.prose h1,
-.prose h2,
-.prose h3 {
-  color: var(--heading);
+
+/* Page load fade-in */
+.page-fade { animation: pageFade 0.6s ease both; }
+@keyframes pageFade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+/* Selection */
+::selection { background: var(--color-dark); color: var(--color-bg); }
+
+/* Accessibility focus */
+:focus-visible { outline: 3px solid color-mix(in srgb, var(--color-accent) 40%, var(--color-dark)); outline-offset: 3px; }
+
+/* Global radii / transitions */
+img, picture, video { border-radius: 12px; display: block; }
+.rounded-12 { border-radius: 12px; }
+.site-transition { transition: all var(--dur-fast) ease; }
+
+/* Section spacing */
+section { padding: var(--section-vertical) 0; }
+@media (max-width: 768px) { section { padding: var(--section-vertical-mobile) 0; } }
+
+/* Headings */
+h1,h2,h3,h4 { margin: 0 0 0.6rem 0; }
+h1 { font-family: var(--font-heading); }
+
+/* Prose/readability */
+.prose { max-width: var(--max-read-width); font-size: 17px; line-height: 1.75; }
+
+/* Section heading with colored left border */
+.section-heading {
+  display: inline-block;
+  font-family: var(--font-sans);
   font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
+  font-size: 40px;
+  padding-left: 16px;
+  border-left: 3px solid var(--color-accent);
 }
-.prose h1 {
-  font-size: 2rem;
+
+/* Nav link styles (uppercase, tracking) */
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
-.prose h2 {
-  font-size: 1.5rem;
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 46px; padding: 0 20px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: transform var(--dur-fast) ease, box-shadow var(--dur-fast) ease; box-shadow: 0 6px 18px rgba(16,24,40,0.04); }
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--color-accent); color: white; border: none; box-shadow: 0 8px 28px rgba(37,99,235,0.12); }
+.btn-outline { background: transparent; color: var(--color-text); border: 1px solid var(--color-border); }
+.btn-accent { background: var(--color-accent-warm); color: white; }
+
+/* Navbar specific */
+.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; }
+.navbar-inner { height: 84px; display:flex; align-items:center; justify-content:space-between; padding: 0 2.5rem; }
+.navbar-transparent { background: transparent; }
+.navbar-surface { background: rgba(255,255,255,0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); }
+.nav-logo { font-family: var(--font-heading); font-weight: 700; font-size: 22px; color: var(--color-text); letter-spacing: -0.01em; }
+.nav-links { display:flex; gap: 24px; align-items:center; }
+.nav-link-underline { position: relative; padding-bottom: 4px; }
+.nav-link-underline::after { content: ''; position:absolute; left:0; bottom:0; height:2px; width:0; background: var(--color-accent); transition: width var(--dur-fast) ease; }
+.nav-link-underline:hover::after, .nav-link-underline.active::after { width:100%; }
+
+/* Hero */
+.hero { min-height: 100vh; display:flex; align-items:center; justify-content:center; text-align:center; background: var(--color-dark); color: #fff; position: relative; overflow: hidden; }
+.hero-inner { z-index: 10; max-width: 1100px; padding: 0 1rem; }
+.hero-title { font-family: var(--font-heading); font-weight: 700; font-size: var(--size-lg-heading); line-height: 1.02; letter-spacing: -0.02em; margin: 0; }
+.hero-sub { margin-top: 18px; font-variant: small-caps; color: rgba(255,255,255,0.82); letter-spacing: 0.08em; }
+.hero-ctas { margin-top: 28px; display:flex; gap:12px; justify-content:center; }
+.hero-secondary { border: 1px solid rgba(255,255,255,0.18); background: transparent; color: white; }
+.hero-accent { background: var(--color-accent); color: white; }
+
+/* Particle canvas placeholder: simple animated dots/lines using CSS */
+.neural-canvas { position:absolute; inset:0; z-index:2; opacity:0.2; }
+.neural-dot { position:absolute; width:4px; height:4px; background: rgba(255,255,255,0.9); border-radius:999px; animation: pulse 3s infinite ease-in-out; }
+@keyframes pulse { 0% { transform: scale(0.6); } 50% { transform: scale(1.1); } 100% { transform: scale(0.6); } }
+
+/* Research cards */
+.research-grid { display:grid; grid-template-columns: repeat(2,1fr); gap:28px; }
+@media (max-width: 768px) { .research-grid { grid-template-columns: 1fr; } }
+.research-card { background: var(--color-bg); border-radius: 12px; padding: 20px; box-shadow: 0 6px 18px rgba(16,24,40,0.03); transition: transform var(--dur-fast) ease, box-shadow var(--dur-fast) ease; border-top: 6px solid var(--color-accent); }
+.research-card:hover { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(16,24,40,0.06); }
+.research-icon { width:64px; height:64px; border-radius:10px; background: linear-gradient(135deg,var(--color-accent) 0%, rgba(59,130,246,0.6) 100%); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; }
+
+/* Team card hover: square -> circle, image zoom and overlay */
+.team-card { text-align:center; }
+.team-photo-wrap { width:100%; aspect-ratio:1 / 1; overflow:hidden; border-radius:12px; transition: border-radius 0.35s ease; }
+.team-card.group:hover .team-photo-wrap { border-radius:50%; }
+.team-photo { width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease; }
+.team-card.group:hover .team-photo { transform: scale(1.06); }
+.team-overlay { position:absolute; inset:0; display:flex; align-items:end; justify-content:center; padding:12px; background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(13,27,42,0.7) 100%); color:white; transform: translateY(20px); opacity:0; transition: all 0.35s ease; }
+.team-card.group:hover .team-overlay { transform: translateY(0); opacity:1; }
+
+/* News horizontal card with date badge */
+.news-card { display:flex; gap:18px; align-items:center; padding:18px; background: var(--color-bg); border-radius:12px; transition: transform var(--dur-fast) ease, box-shadow var(--dur-fast) ease; }
+.news-card:hover { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(16,24,40,0.06); }
+.news-date { min-width:88px; text-align:center; padding:12px; border-radius:8px; background: linear-gradient(180deg, var(--color-accent) 0%, rgba(59,130,246,0.9) 100%); color:white; font-weight:700; }
+
+/* Footer */
+.site-footer { background: var(--color-dark); color: rgba(255,255,255,0.92); padding: 48px 0 24px; border-top: 3px solid var(--color-accent); }
+.site-footer a { color: rgba(255,255,255,0.85); }
+
+/* Small helpers */
+.muted { color: var(--color-muted); }
+
+/* Prose / mdx tweaks to use new tokens */
+.prose { color: var(--color-text); }
+.prose h1, .prose h2, .prose h3 { font-family: var(--font-heading); }
+
+/* Dark theme token overrides (toggled by the ThemeProvider via the 'dark' class on <html>) */
+.dark {
+  --color-bg: #071029;
+  --color-surface: #071826;
+  --color-accent: #60a5fa;
+  --color-accent-warm: #f59e0b;
+  --color-text: #e6eef8;
+  --color-muted: #9fb0c6;
+  --color-border: rgba(255,255,255,0.06);
+  --nav-bg: rgba(10,12,18,0.5);
+
+  /* legacy aliases */
+  --bg-off: var(--color-surface);
+  --fg: var(--color-text);
+  --fg-2: var(--color-muted);
+  --heading: var(--color-text);
+  --border: var(--color-border);
 }
-.prose h3 {
-  font-size: 1.2rem;
+
+/* Dark hero visual tweak for a cooler look */
+.dark .hero {
+  background: radial-gradient(600px 400px at 20% 20%, rgba(96,165,250,0.08), transparent 6%), linear-gradient(180deg,#021426 0%, #071029 60%);
+  color: var(--color-text);
 }
-.prose p {
-  margin-bottom: 1.25rem;
-}
-.prose strong {
-  color: var(--heading);
-  font-weight: 600;
-}
-.prose a {
-  color: var(--fg);
-  text-decoration-line: underline;
-  text-decoration-color: var(--border);
-  text-underline-offset: 3px;
-  transition: text-decoration-color 0.2s ease;
-}
-.prose a:hover {
-  text-decoration-color: var(--fg);
-}
-.prose ul,
-.prose ol {
-  padding-left: 1.5rem;
-  margin-bottom: 1.25rem;
-}
-.prose li {
-  margin-bottom: 0.4rem;
-}
-.prose blockquote {
-  border-left: 2px solid var(--border);
-  padding-left: 1rem;
-  color: var(--fg-2);
-  font-style: italic;
-  margin-left: 0;
-}
-.prose code {
-  font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  font-size: 0.875em;
-  background: var(--bg-off);
-  padding: 0.15em 0.4em;
-  border-radius: 4px;
-  color: var(--fg);
-}
-.prose pre {
-  background: var(--bg-off);
-  padding: 1.25rem;
-  border-radius: 8px;
-  overflow-x: auto;
-}
-.prose pre code {
-  background: none;
-  padding: 0;
-}
-.prose hr {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 2.5rem 0;
-}
+.dark .neural-dot { background: rgba(255,255,255,0.9); opacity: 0.12; }
