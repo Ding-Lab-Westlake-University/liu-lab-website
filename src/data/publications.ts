@@ -5,6 +5,8 @@ export type Publication = {
   title: string;
   authors: Author[];
   venue: string;
+  /** Optional path under `/public` for the publication title page or header image */
+  titleImage?: string;
   pdfUrl?: string;
   codeUrl?: string;
   doiUrl?: string;
@@ -20,6 +22,7 @@ export const publications: Publication[] = [
     venue: "Journal of Visualized Experiments (JoVE).",
     doiUrl:
       "https://www.jove.com/t/70401/in-vivo-calcium-imaging-with-miniaturized-microscope-hypothalamus-for",
+    titleImage: "/images/publications/jove-2026.png",
   },
 
   // ── 2025 ──────────────────────────────────────────────────
@@ -38,6 +41,7 @@ export const publications: Publication[] = [
     venue: "Nature 640 (8060), 1000–1010.",
     pdfUrl: "",
     doiUrl: "https://www.nature.com/articles/s41586-025-08617-8",
+    titleImage: "/images/publications/nature-2025.png",
   },
 
   // ── 2022 ──────────────────────────────────────────────────
@@ -57,6 +61,7 @@ export const publications: Publication[] = [
     venue: "Nature 606 (7916), 937–944.",
     pdfUrl: "",
     doiUrl: "https://doi.org/10.1038/s41586-022-04793-z",
+    titleImage: "/images/publications/nature-2022.png",
   },
 
   // ── 2014 ──────────────────────────────────────────────────
@@ -78,5 +83,6 @@ export const publications: Publication[] = [
     venue: "Science 346 (6208), 458–463.",
     pdfUrl: "",
     doiUrl: "https://doi.org/10.1126/science.1256573",
+    titleImage: "/images/publications/science-2014.png",
   },
 ];

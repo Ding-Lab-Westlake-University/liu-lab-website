@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 
 interface Slide {
@@ -12,10 +12,20 @@ interface Slide {
 
 interface HeroCarouselProps {
   slides: Slide[];
+  /** Optional extra classes for the outer container */
+  containerClassName?: string;
+  /** Optional classes for the image wrapper (override default aspect-square) */
+  imageWrapperClassName?: string;
 }
 
-export default function HeroCarousel({ slides }: HeroCarouselProps) {
+export default function HeroCarousel({
+  slides,
+  containerClassName,
+  imageWrapperClassName,
+}: HeroCarouselProps) {
   const [idx, setIdx] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
 
   const prev = useCallback(
     () => setIdx((i) => (i - 1 + slides.length) % slides.length),
@@ -33,6 +43,23 @@ export default function HeroCarousel({ slides }: HeroCarouselProps) {
     return () => clearInterval(t);
   }, [next, slides.length]);
 
+  const onTouchStart = (e: any) => {
+    touchStartX.current = e.touches?.[0]?.clientX ?? null;
+  };
+  const onTouchMove = (e: any) => {
+    touchEndX.current = e.touches?.[0]?.clientX ?? null;
+  };
+  const onTouchEnd = () => {
+    if (touchStartX.current !== null && touchEndX.current !== null) {
+      const delta = touchStartX.current - touchEndX.current;
+      const threshold = 40; // px
+      if (delta > threshold) next();
+      else if (delta < -threshold) prev();
+    }
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
+
   if (slides.length === 0) {
     return (
       <div className="w-full max-w-xl mx-auto aspect-square rounded-2xl bg-[var(--bg-off)] flex items-center justify-center mt-12">
@@ -48,9 +75,20 @@ export default function HeroCarousel({ slides }: HeroCarouselProps) {
   }
 
   return (
-    <div className="relative w-full max-w-2xl mx-auto mt-14 select-none">
+    <div
+      className={`relative w-full max-w-2xl mx-auto mt-14 select-none ${
+        containerClassName ?? ""
+      }`}
+    >
       {/* Main image */}
-      <div className="relative aspect-square rounded-2xl overflow-hidden bg-[var(--bg-off)]">
+      <div
+        className={
+          imageWrapperClassName ?? "relative aspect-square rounded-2xl overflow-hidden bg-[var(--bg-off)]"
+        }
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
         {slides.map((slide, i) => (
           <div
             key={i}
@@ -63,9 +101,7 @@ export default function HeroCarousel({ slides }: HeroCarouselProps) {
               alt={slide.alt}
               fill
               className={
-                slide.rotate90
-                  ? "object-contain rotate-90 p-6"
-                  : "object-cover"
+                slide.rotate90 ? "object-contain rotate-90 p-6" : "object-cover"
               }
               priority={i === 0}
               sizes="(max-width: 768px) 100vw, 672px"

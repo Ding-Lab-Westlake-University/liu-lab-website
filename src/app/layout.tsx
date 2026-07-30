@@ -32,10 +32,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={inter.variable} suppressHydrationWarning>
-      <body className="min-h-screen bg-[var(--bg)] text-[var(--fg)] antialiased">
+      <body className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] antialiased">
         <ThemeProvider>
           <Navbar />
-          <main>{children}</main>
+          <main className="page-fade">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>
