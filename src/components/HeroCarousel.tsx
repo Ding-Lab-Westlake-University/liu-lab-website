@@ -1,6 +1,12 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  type TouchEvent,
+} from "react";
 import Image from "next/image";
 
 interface Slide {
@@ -43,10 +49,10 @@ export default function HeroCarousel({
     return () => clearInterval(t);
   }, [next, slides.length]);
 
-  const onTouchStart = (e: any) => {
+  const onTouchStart = (e: TouchEvent<HTMLDivElement>) => {
     touchStartX.current = e.touches?.[0]?.clientX ?? null;
   };
-  const onTouchMove = (e: any) => {
+  const onTouchMove = (e: TouchEvent<HTMLDivElement>) => {
     touchEndX.current = e.touches?.[0]?.clientX ?? null;
   };
   const onTouchEnd = () => {

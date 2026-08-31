@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { site } from "@/data/site";
 import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
@@ -27,19 +27,16 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menu on route change
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
-
   return (
     <header className={`navbar ${scrolled ? 'navbar-surface' : 'navbar-transparent'}`}>
       <nav className="navbar-inner">
         {/* Logo / Lab name */}
         <Link href="/" className="nav-logo">
-          <img
-            src="/liu-lab-website/images/logo.jpg"
+          <Image
+            src="/images/logo.jpg"
             alt="Liu Lab logo"
+            width={194}
+            height={52}
             style={{ height: 52, width: "auto", display: "block", filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.4))" }}
           />
         </Link>
@@ -90,6 +87,7 @@ export default function Navbar() {
               <li key={href}>
                 <Link
                   href={href}
+                  onClick={() => setMenuOpen(false)}
                   className="block text-[15px] text-[var(--color-text)] py-1 hover:text-[var(--color-dark)] transition-colors"
                 >
                   {label}
@@ -97,7 +95,11 @@ export default function Navbar() {
               </li>
             ))}
             <li>
-              <Link href="/contact#join" className="btn btn-primary w-full text-center">
+              <Link
+                href="/contact#join"
+                onClick={() => setMenuOpen(false)}
+                className="btn btn-primary w-full text-center"
+              >
                 Join Us
               </Link>
             </li>

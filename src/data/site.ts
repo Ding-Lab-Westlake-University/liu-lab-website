@@ -41,7 +41,7 @@ export const site = {
   ],
 
   links: {
-    github: "https://github.com/kianmax0/liu-lab-website",
+    github: "https://github.com/Ding-Lab-Westlake-University/liu-lab-website",
     twitter: "",
     googleScholar: "",
   },

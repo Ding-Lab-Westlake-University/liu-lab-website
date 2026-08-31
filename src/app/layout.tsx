@@ -14,7 +14,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kianmax0.github.io/liu-lab-website"),
+  metadataBase: new URL(
+    "https://ding-lab-westlake-university.github.io/liu-lab-website",
+  ),
   title: {
     default: site.name,
     template: `%s · ${site.name}`,

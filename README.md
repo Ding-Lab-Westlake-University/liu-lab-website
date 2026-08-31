@@ -2,7 +2,7 @@
 
 Systems Social Neuroscience Lab · Westlake University
 
-**Live site:** [https://kianmax0.github.io/liu-lab-website/](https://kianmax0.github.io/liu-lab-website/)
+**Live site:** [https://ding-lab-westlake-university.github.io/liu-lab-website/](https://ding-lab-westlake-university.github.io/liu-lab-website/)
 
 ## Local development
 
