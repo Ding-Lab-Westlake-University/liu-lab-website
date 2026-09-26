@@ -18,7 +18,13 @@ export const publications: Publication[] = [
     year: 2026,
     title:
       "In Vivo Calcium Imaging with a Miniaturized Microscope in the Hypothalamus for Understanding Social Behaviors in Mice",
-    authors: [{ name: "Authors to be updated" }],
+    authors: [
+      { name: "Yu Yuki DAI", labMember: true },
+      { name: "Chenxin WEI", labMember: true },
+      { name: "Yibo YUAN", labMember: true },
+      { name: "Mohammed Mostafizur RAHMAN" },
+      { name: "Ding LIU", labMember: true },
+    ],
     venue: "Journal of Visualized Experiments (JoVE).",
     doiUrl:
       "https://www.jove.com/t/70401/in-vivo-calcium-imaging-with-miniaturized-microscope-hypothalamus-for",
