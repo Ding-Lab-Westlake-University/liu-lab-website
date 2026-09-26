@@ -14,7 +14,7 @@ export default function LabLifePage() {
   return (
     <div className="pt-28 pb-32">
       {/* Page header */}
-      <section className="max-w-[1400px] mx-auto px-8 mb-20">
+      <section className="max-w-[1400px] mx-auto px-8 !py-0 mb-14">
         <FadeInWhenVisible>
           <h1 className="text-[clamp(2.7rem,6.3vw,5.4rem)] font-extrabold tracking-[-0.03em] text-[var(--heading)] leading-tight">
             Lab Life
@@ -26,7 +26,7 @@ export default function LabLifePage() {
       </section>
 
       {/* Event list */}
-      <section className="max-w-[1400px] mx-auto px-8">
+      <section className="max-w-[1400px] mx-auto px-8 !py-0">
         {events.length === 0 ? (
           <FadeInWhenVisible>
             <div className="rounded-2xl border border-[var(--border)] bg-[var(--bg-off)] p-16 text-center">
@@ -40,32 +40,35 @@ export default function LabLifePage() {
             </div>
           </FadeInWhenVisible>
         ) : (
-          <div className="flex flex-col gap-10">
+          <div className="grid gap-10 md:grid-cols-2">
             {events.map((event, i) => (
               <FadeInWhenVisible key={event.id} delay={i * 0.05}>
                 <Link
                   href={`/lab-life/${event.id}`}
-                  className="block max-w-2xl mx-auto"
+                  className="group block h-full"
                 >
-                  <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
+                  <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-[var(--bg-off)]">
                     <Image
                       src={event.coverPhoto.src}
                       alt={event.coverPhoto.alt}
                       fill
-                      className="object-cover hover:scale-[1.01] transition-transform duration-200"
-                      sizes="(max-width: 768px) 100vw, 672px"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   </div>
-                  <div className="mt-5">
-                    <p className="text-[16px] text-[var(--fg-2)]">
-                      Time: {event.date}
-                    </p>
-                    <p className="mt-1 text-[20px] text-[var(--fg)] leading-relaxed">
-                      Theme: {event.theme}
-                    </p>
+                  <div className="mt-5 flex items-start justify-between gap-6">
+                    <h2 className="text-[21px] font-semibold text-[var(--fg)] leading-snug">
+                      {event.theme}
+                    </h2>
+                    <time className="shrink-0 text-[14px] text-[var(--fg-2)]">
+                      {event.date}
+                    </time>
                   </div>
-                  <p className="mt-3 text-[15px] text-[var(--fg-2)]">
-                    View all photos ({event.photos.length})
+                  <p className="mt-3 text-[15px] text-[var(--fg-2)] leading-relaxed">
+                    {event.caption}
+                  </p>
+                  <p className="mt-4 text-[14px] font-medium text-[var(--accent)]">
+                    View {event.photos.length} {event.photos.length === 1 ? "photo" : "photos"} →
                   </p>
                 </Link>
               </FadeInWhenVisible>

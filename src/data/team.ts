@@ -7,6 +7,11 @@ export type Member = {
   email?: string;
 };
 
+export type PreschoolMember = {
+  name: string;
+  photo: string;
+};
+
 export const pi: Member = {
   name: "Ding LIU, Ph.D.",
   role: "Principal Investigator · Assistant Professor, School of Life Sciences",
@@ -19,10 +24,16 @@ export const pi: Member = {
 
 export const currentMembers: Member[] = [
   {
-    name: "Yuki DAI",
-    role: "Postdoctoral Fellow",
+    name: "Yu Yuki DAI, Ph.D.",
+    role: "Postdoctoral Fellow · Lab Manager",
     photo: "/images/team/YukiDAI.jpg",
     interests: "The relationship between social and hunger",
+  },
+  {
+    name: "Chunjian WANG, Ph.D.",
+    role: "Postdoctoral Fellow",
+    photo: "/images/team/ChunjianWANG.jpg",
+    interests: "Research interests to be updated.",
   },
   {
     name: "Chechang NIE",
@@ -31,20 +42,20 @@ export const currentMembers: Member[] = [
     interests: "Research interests to be updated.",
   },
   {
-    name: "Chenxing WEI",
-    role: "RA",
+    name: "Chenxin WEI",
+    role: "Ph.D. Student (Rotation)",
     photo: "/images/team/ChenxingWEI.jpg",
     interests: "Research interests to be updated.",
   },
   {
     name: "Qian RAO",
-    role: "RA",
+    role: "Lab Manager",
     photo: "/images/team/QianRAO.jpg",
     interests: "Research interests to be updated.",
   },
   {
     name: "Yibo YUAN",
-    role: "RA",
+    role: "Research Assistant",
     photo: "/images/team/YiboYUAN.jpg",
     interests: "Research interests to be updated.",
   },
@@ -61,8 +72,44 @@ export const currentMembers: Member[] = [
     interests: "Research interests to be updated.",
   },
   {
-    name: "Xinzhi CAO",
+    name: "Sichao WANG",
     role: "Visiting Student",
+    photo: "/images/team/SichaoWANG.png",
+    interests: "Research interests to be updated.",
+  },
+  {
+    name: "Jiayun",
+    role: "Summer Student",
+    photo: "/images/team/Jiayun.jpg",
+    interests: "Research interests to be updated.",
+  },
+  {
+    name: "Jie YU",
+    role: "Summer Student",
+    photo: "/images/team/JieYU.jpg",
+    interests: "Research interests to be updated.",
+  },
+  {
+    name: "Minglu ZHANG",
+    role: "Summer Student",
+    photo: "/images/team/MingluZHANG.jpg",
+    interests: "Research interests to be updated.",
+  },
+  {
+    name: "Qiutong YU",
+    role: "Summer Student",
+    photo: "/images/team/QiutongYU.png",
+    interests: "Research interests to be updated.",
+  },
+  {
+    name: "Yiyao HUANG",
+    role: "Summer Student",
+    photo: "/images/team/YiyaoHUANG.jpg",
+    interests: "Research interests to be updated.",
+  },
+  {
+    name: "Xinzhi CAO",
+    role: "Summer Student",
     photo: "/images/team/XinzhiCAO.jpg",
     interests: "Research interests to be updated.",
   },
@@ -97,10 +144,35 @@ export const currentMembers: Member[] = [
     interests: "Research interests to be updated.",
   },
   {
-    name: "Yeahyeah DAI",
-    role: "Ph.D. Student",
-    photo: "/images/team/YeahyeahDAI.jpg",
+    name: "Yifei XIAO",
+    role: "Ph.D. Student (Rotation)",
+    photo: "/images/team/YifeiXIAO.jpg",
     interests: "Research interests to be updated.",
+  },
+  {
+    name: "Yuhao SUN",
+    role: "Ph.D. Student (Rotation)",
+    photo: "/images/team/YuhaoSUN.jpg",
+    interests: "Research interests to be updated.",
+  },
+];
+
+export const preschoolMembers: PreschoolMember[] = [
+  {
+    name: "Peach DAI",
+    photo: "/images/team/preschool/PeachDAI1.jpg",
+  },
+  {
+    name: "Xiaomi",
+    photo: "/images/team/preschool/Xiaomi1.png",
+  },
+  {
+    name: "Yeahyeah DAI",
+    photo: "/images/team/preschool/YeahyeahDAI1.jpg",
+  },
+  {
+    name: "Yuni WANG",
+    photo: "/images/team/preschool/YuniWANG.jpg",
   },
 ];
 

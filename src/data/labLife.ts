@@ -9,6 +9,7 @@ export interface LabPhoto {
 export interface LabEventConfig {
   id: string;
   date: string;
+  sortDate: string;
   theme: string;
   caption: string;
   prefix: string;
@@ -21,31 +22,60 @@ export interface LabEvent extends LabEventConfig {
 
 const labEventConfigs: LabEventConfig[] = [
   {
+    id: "2026-09-10",
+    date: "2026-09-10",
+    sortDate: "2026-09-10",
+    theme: "Teacher's Day 2026",
+    caption: "Celebrating Teacher's Day together at Westlake University.",
+    prefix: "20260910-teachers-day-",
+  },
+  {
+    id: "2026-08-07-zhang-lab-gathering",
+    date: "August 2026",
+    sortDate: "2026-08-07",
+    theme: "Beginning of Autumn Gathering with Zhang Lab",
+    caption: "A joint beginning-of-autumn gathering with Zhang Lab.",
+    prefix: "202608-zhang-lab-",
+  },
+  {
+    id: "2026-summer-program",
+    date: "July 16-22, 2026",
+    sortDate: "2026-07-22",
+    theme: "International Summer Program",
+    caption:
+      "Our lab hosted the Biology Track for international high school students during the Westlake University Summer Program.",
+    prefix: "202607-summer-program-",
+  },
+  {
     id: "2026-02-15",
-    date: "2026-2-15",
-    theme: "搬新家 过新年",
-    caption: "鲜衣怒马，骐骥驰骋~\n搬新家，穿新衣，过新年！",
+    date: "2026-02-15",
+    sortDate: "2026-02-15",
+    theme: "New Lab, New Year",
+    caption: "Celebrating the opening of our new lab and the Lunar New Year.",
     prefix: "02152026-",
   },
   {
-    id: "2025-09-01",
-    date: "2025-09-01",
-    theme: "第一次教师节",
-    caption: "第一次教师节",
+    id: "2025-09-10",
+    date: "2025-09-10",
+    sortDate: "2025-09-10",
+    theme: "Our First Teacher's Day",
+    caption: "Celebrating our lab's first Teacher's Day.",
     prefix: "202509第一次教师节-",
   },
   {
     id: "2025-11-01",
     date: "2025-11-01",
-    theme: "第一次秋游",
-    caption: "第一次秋游",
+    sortDate: "2025-11-01",
+    theme: "Our First Autumn Outing",
+    caption: "Our first autumn outing as a lab.",
     prefix: "202511第一次秋游-",
   },
   {
     id: "2026-04-01",
     date: "2026-04-01",
-    theme: "第一次春游",
-    caption: "第一次春游",
+    sortDate: "2026-04-01",
+    theme: "Our First Spring Outing",
+    caption: "Our first spring outing as a lab.",
     prefix: "202604第一次春游-",
   },
 ];
@@ -99,6 +129,7 @@ function buildConfigFromPrefix(prefix: string): LabEventConfig {
     return {
       id: parsed.id,
       date: parsed.date,
+      sortDate: parsed.id,
       theme: "Lab Life",
       caption: `A collection of lab life photos from ${parsed.date}.`,
       prefix,
@@ -109,6 +140,7 @@ function buildConfigFromPrefix(prefix: string): LabEventConfig {
   return {
     id: fallbackId,
     date: fallbackId,
+    sortDate: "0000-01-01",
     theme: "Lab Life",
     caption: "A collection of lab life photos.",
     prefix,
@@ -168,7 +200,8 @@ export function getLabEvents(): LabEvent[] {
         coverPhoto: photos[0],
       };
     })
-    .filter((event): event is LabEvent => event !== null);
+    .filter((event): event is LabEvent => event !== null)
+    .sort((a, b) => b.sortDate.localeCompare(a.sortDate));
 }
 
 export function getLabEventById(eventId: string): LabEvent | undefined {

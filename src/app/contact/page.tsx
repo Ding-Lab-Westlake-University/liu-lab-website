@@ -71,6 +71,63 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* Media and outreach */}
+      <section
+        id="media"
+        className="max-w-[1400px] mx-auto px-8 mb-24 scroll-mt-20"
+      >
+        <FadeInWhenVisible>
+          <h2 className="text-[clamp(1.8rem,4vw,3rem)] font-bold tracking-[-0.025em] text-[var(--fg)] mb-3">
+            Media &amp; Outreach
+          </h2>
+          <p className="text-[15px] font-light text-[var(--fg-2)] max-w-lg mb-12 leading-relaxed">
+            Follow the lab and listen to conversations featuring members of our
+            team.
+          </p>
+        </FadeInWhenVisible>
+
+        <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-6">
+          <FadeInWhenVisible>
+            <a
+              href={site.media.xiaohongshu.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block p-8 bg-[var(--bg-off)] rounded-2xl h-full"
+            >
+              <p className="text-[12px] font-semibold text-[var(--fg-2)] uppercase tracking-widest mb-4">
+                Xiaohongshu
+              </p>
+              <h3 className="text-[24px] font-semibold text-[var(--fg)] tracking-tight group-hover:underline underline-offset-4">
+                {site.media.xiaohongshu.name}
+              </h3>
+              <p className="mt-3 text-[14px] text-[var(--fg-2)] font-light">
+                View the account ↗
+              </p>
+            </a>
+          </FadeInWhenVisible>
+
+          <div className="grid grid-cols-1 gap-3">
+            {site.media.podcasts.map((episode, i) => (
+              <FadeInWhenVisible key={episode.url} delay={i * 0.05}>
+                <a
+                  href={episode.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block p-6 bg-[var(--bg-off)] rounded-2xl"
+                >
+                  <p className="text-[12px] font-semibold text-[var(--fg-2)] uppercase tracking-widest mb-2">
+                    Podcast · {episode.show}
+                  </p>
+                  <h3 className="text-[15px] font-semibold text-[var(--fg)] leading-relaxed group-hover:underline underline-offset-4">
+                    {episode.title} ↗
+                  </h3>
+                </a>
+              </FadeInWhenVisible>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Open Positions */}
       <section
         id="openings"

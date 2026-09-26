@@ -43,12 +43,20 @@ export default function Footer() {
             {site.contact.address}
           </p>
 
-          <div className="flex gap-3 mt-4">
+          <div className="flex flex-wrap gap-x-4 gap-y-2 mt-4 text-[14px]">
             {site.links.github && (
               <a href={site.links.github} target="_blank" rel="noopener noreferrer">
                 GitHub
               </a>
             )}
+            <a
+              href={site.media.xiaohongshu.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Xiaohongshu
+            </a>
+            <Link href="/contact#media">Podcasts</Link>
           </div>
         </div>
       </div>

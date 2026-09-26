@@ -43,7 +43,7 @@ export default function NewsPage() {
   return (
     <div className="pt-28 pb-32">
       {/* Page header */}
-      <section className="max-w-[1400px] mx-auto px-8 mb-20">
+      <section className="max-w-[1400px] mx-auto px-8 !py-0 mb-14">
         <FadeInWhenVisible>
           <h1 className="text-[clamp(2.5rem,6vw,5rem)] font-extrabold tracking-[-0.03em] text-[var(--heading)] leading-tight">
             News
@@ -55,7 +55,7 @@ export default function NewsPage() {
       </section>
 
       {/* News list */}
-      <section className="max-w-[1400px] mx-auto px-8">
+      <section className="max-w-[1400px] mx-auto px-8 !py-0">
         {items.length === 0 ? (
           <FadeInWhenVisible>
             <p className="text-[15px] text-[var(--color-muted)]">No news posts yet.</p>

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import FadeInWhenVisible from "@/components/FadeInWhenVisible";
+import PreschoolCard from "@/components/PreschoolCard";
 import TeamCard from "@/components/TeamCard";
-import { pi, currentMembers, alumni } from "@/data/team";
+import { pi, currentMembers, preschoolMembers, alumni } from "@/data/team";
 
 export const metadata: Metadata = {
   title: "Team",
@@ -9,10 +10,12 @@ export const metadata: Metadata = {
 
 const roleSections = [
   { title: "Postdoc", keywords: ["postdoc", "postdoctoral"] },
-  { title: "RA", keywords: ["ra"] },
+  { title: "Lab Manager", keywords: ["lab manager"] },
+  { title: "Research Assistant", keywords: ["ra", "research assistant"] },
   { title: "Administrative", keywords: ["administrative", "admin"] },
   { title: "PHD", keywords: ["phd", "ph.d"] },
   { title: "Undergraduate", keywords: ["undergraduate"] },
+  { title: "Summer Students", keywords: ["summer student"] },
   { title: "Visiting", keywords: ["visiting"] },
 ];
 
@@ -29,7 +32,10 @@ export default function TeamPage() {
     .map((section) => ({
       ...section,
       members: currentMembers.filter((member) =>
-        roleMatches(member.role, section.keywords),
+        roleMatches(member.role, section.keywords) &&
+        roleSections.find((candidate) =>
+          roleMatches(member.role, candidate.keywords),
+        ) === section,
       ),
     }))
     .filter((section) => section.members.length > 0);
@@ -110,6 +116,26 @@ export default function TeamPage() {
           ))}
         </section>
       )}
+
+      {/* Preschool */}
+      <section className="max-w-[1400px] mx-auto px-8 mb-20 section-compact">
+        <FadeInWhenVisible>
+          <h2 className="text-[13px] font-semibold text-[var(--fg-2)] uppercase tracking-widest mb-3">
+            Pre-school
+          </h2>
+          <p className="text-[15px] text-[var(--fg-2)] font-light mb-10">
+            Our smallest lab members.
+          </p>
+        </FadeInWhenVisible>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-12">
+          {preschoolMembers.map((member, i) => (
+            <FadeInWhenVisible key={member.name} delay={i * 0.05}>
+              <PreschoolCard member={member} />
+            </FadeInWhenVisible>
+          ))}
+        </div>
+      </section>
 
       {/* Alumni */}
       {alumni.length > 0 && (

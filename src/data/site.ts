@@ -40,6 +40,35 @@ export const site = {
     },
   ],
 
+  media: {
+    xiaohongshu: {
+      name: "鼎哥的脑洞",
+      url: "https://www.xiaohongshu.com/user/profile/5fa1bee8000000000100bc6f",
+    },
+    podcasts: [
+      {
+        title: "E027 AI会取代亲密关系吗？｜刘鼎对谈博士生",
+        show: "嗑嗑科学",
+        url: "https://www.xiaoyuzhoufm.com/episode/69d862a7e2c8be3155d41f20",
+      },
+      {
+        title: "E082. 世界真实存在的证据？和哈佛大学脑科学博后聊聊玄学 ft. 刘鼎",
+        show: "TIANYU2FM — 对谈未知领域",
+        url: "https://www.xiaoyuzhoufm.com/episode/64ef43e380c9ec4c5fb8083c",
+      },
+      {
+        title: "E088. 我们为什么感到孤独？和哈佛脑科学博后聊聊孤独与社交 ft. 刘鼎",
+        show: "TIANYU2FM — 对谈未知领域",
+        url: "https://www.xiaoyuzhoufm.com/episode/65707f2ad6e0ff5822cb8ec8",
+      },
+      {
+        title: "E121. 人类演化的尽头在哪里？和哈佛、MIT博后聊聊「超自然」ft. 刘鼎、沈晨杰",
+        show: "TIANYU2FM — 对谈未知领域",
+        url: "https://www.xiaoyuzhoufm.com/episode/680eda707a449ae8581554ad",
+      },
+    ],
+  },
+
   links: {
     github: "https://github.com/Ding-Lab-Westlake-University/liu-lab-website",
     twitter: "",

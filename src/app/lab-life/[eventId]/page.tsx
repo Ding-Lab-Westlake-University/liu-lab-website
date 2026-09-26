@@ -43,8 +43,11 @@ export default async function LabLifeEventPage({
             ← Back to Lab Life
           </Link>
           <h1 className="text-[clamp(2.2rem,5.4vw,3.9rem)] font-extrabold tracking-[-0.03em] text-[var(--heading)] leading-tight">
-            {event.date}
+            {event.theme}
           </h1>
+          <time className="mt-4 block text-[14px] text-[var(--fg-2)]">
+            {event.date}
+          </time>
           <p className="mt-4 text-[19px] text-[var(--fg)] whitespace-pre-line leading-relaxed max-w-4xl">
             {event.caption}
           </p>
