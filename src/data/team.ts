@@ -60,6 +60,12 @@ export const currentMembers: Member[] = [
     interests: "Research interests to be updated.",
   },
   {
+    name: "Yang YANG",
+    role: "Research Assistant",
+    photo: "/images/team/YangYANG.jpg",
+    interests: "Research interests to be updated.",
+  },
+  {
     name: "Tianyang CHEN",
     role: "Administrative Assistant",
     photo: "/images/team/TianyangCHEN.jpg",
