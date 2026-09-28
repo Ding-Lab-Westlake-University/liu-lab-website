@@ -36,7 +36,7 @@ export const currentMembers: Member[] = [
     interests: "Research interests to be updated.",
   },
   {
-    name: "Chechang NIE",
+    name: "Chechang NIE, Ph.D.",
     role: "Postdoctoral Fellow",
     photo: "/images/team/ChechangNIE.jpg",
     interests: "Research interests to be updated.",
@@ -75,6 +75,12 @@ export const currentMembers: Member[] = [
     name: "Sichao WANG",
     role: "Visiting Student",
     photo: "/images/team/SichaoWANG.png",
+    interests: "Research interests to be updated.",
+  },
+  {
+    name: "Qiaoyun HUANG",
+    role: "Visiting Student",
+    photo: "/images/team/QiaoyunHUANG.jpg",
     interests: "Research interests to be updated.",
   },
   {
